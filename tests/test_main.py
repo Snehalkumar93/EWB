@@ -13,3 +13,11 @@ def test_health_endpoint(test_client):
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
+
+
+def test_dashboard_endpoint(test_client):
+    """Verify GET /dashboard returns HTML dashboard."""
+    response = test_client.get("/dashboard")
+    assert response.status_code == 200
+    assert "Students CRUD Portal" in response.text
+
